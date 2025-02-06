@@ -10,8 +10,6 @@ import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
-import android.test.AndroidTestCase;
 import android.util.Log;
 import android.view.Surface;
 
@@ -20,7 +18,6 @@ import com.aserbao.androidcustomcamera.blocks.mediaCodec.bigflake.BigFlakeBaseAc
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;

@@ -2,12 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    android.ndkVersion = '19.2.5345600'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.aserbao.androidcustomcamera"
         minSdkVersion 23
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -15,8 +16,11 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags " "
-                abiFilters 'armeabi-v7a'
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
+        }
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
     }
     buildTypes {
@@ -48,28 +52,32 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.12'
     //=====================================UI
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
     //======================================ButterKnife
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.github.yangjie10930:EpMedia:v0.9.5'
-    implementation 'pub.devrel:easypermissions:0.3.0'
+    // REPLACED by easypermissions-release.aar
+    // implementation 'pub.devrel:easypermissions:2.0.1'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
-    implementation 'com.danikula:videocache:2.7.0'
+    // REPLACED by the following AndroidVideoCache
+    // implementation 'com.danikula:videocache:2.7.0'
+    implementation 'com.github.metalurgus:AndroidVideoCache:v2.3.4.2'
+
     //==================mp4parser====================
     implementation 'com.googlecode.mp4parser:isoparser:1.1.21'
     implementation files('libs/fmod.jar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
-    testCompile 'junit:junit:4.12'
-    testCompile "org.mockito:mockito-core:1.9.5"
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:1.9.5"
 }
 repositories {
     mavenCentral()

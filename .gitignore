@@ -1,0 +1,6 @@
+.idea
+.gradle
+build
+app/.cxx/*
+local.properties
+.java-version

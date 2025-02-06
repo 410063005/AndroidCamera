@@ -1,3 +1,37 @@
+# 编译说明
+
+这个项目较旧。不过经过重新配置仍然可以在最新的 AS(Android Studio Ladybug Feature Drop | 2024.2.2) 中正常运行。
+
+- 安装 SDK
+    - 安装 JDK 1.8
+        - Build > Build Tools > Gradle
+        - Gradle JDK, Download JDK
+        - Edit Version, 1.8
+        - Install JDK 1.8
+    - 安装 NDK 19.2.5345600
+        - Languages > Android SDK > SDK Tools,
+        - Check 'Show Package Details'
+        - Install NDK 19.2.5345600
+- 配置 SDK
+    - 调整 Gradle JDK
+        - Edit `./gradle/config.properties`
+        - `java.home=</path/to/JDK 1.8>`
+    - 调整 android.ndkVersion
+        - ndkVersion 调整成 19.2.5345600
+    - 调整 compileSdkVersion
+        - compileSdkVersion 调整成 28
+    - 调整 abiFilters
+        - cmake abiFilters 补充 arm64-v8a
+        - ndk abiFilters 补充 arm64-v8a
+- 升级依赖库
+    - 调整 android compact 库
+        - android compact 库升级到 28 版本
+    - 替换 'com.danikula:videocache' [来源](https://github.com/metalurgus/AndroidVideoCache)
+    - 替换 'pub.devrel:easypermissions'
+    - 添加 arm64-v8a 版本的 libfmod.so [来源](https://github.com/onestravel/playSound)
+- 修复编译错误
+    - 删除 `EncodeDecodeTest.java`
+    - `ExtractMpegFramesActivity.java` 删除错误的 import
 
 # 作者简介 
 Mr. Zhu ，英文名aserbao! 从事Android开发多年，技术不高，用来工作刚刚好。对视频音视频处理，硬编码这一块有一定的研究。之前北漂，现在深漂。同名微信公众号aserbao的维护者，喜欢看书，摄影，交友，目前生活这样子。欢迎大家关注我的公众号和微信一起学习交流。
